@@ -7,7 +7,7 @@ export type Props = {
   title: string;
   price: string;
   description: string;
-  handleBuyNow: (quantity: number) => void;
+  handleBuyNow: Function;
 };
 
 const CardComponent = ({
@@ -48,36 +48,37 @@ const CardComponent = ({
         <h5 style={{ color: "#2b3783" }}>₹{price}</h5>
 
         <Form.Group className="mt-2">
-          {!showQuantityControls ? (
+          <div
+            className="d-flex align-items-center justify-content-between mt-2"
+            style={{
+              border: "1px solid #2b3783",
+              borderRadius: "5px",
+            }}
+          >
+            <button className="quantity-button" onClick={handleDecrement}>
+              <IoRemoveSharp size={15} />
+            </button>
+            <Form.Control
+              type="text"
+              value={quantity}
+              readOnly
+              className="text-center mx-2 border-0"
+              style={{ width: "60px" }}
+            />
+            <button className="quantity-button" onClick={handleIncrement}>
+              <IoAddSharp size={15} />
+            </button>
+          </div>
+        </Form.Group>
+        <Form.Group>
+          <div className="mt-2">
             <button
               className="w-100 general-button"
-              onClick={handleBuyNowClick}
+              onClick={() => handleBuyNow()}
             >
               Buy Now
             </button>
-          ) : (
-            <div
-              className="d-flex align-items-center justify-content-between mt-2"
-              style={{
-                border: "1px solid #2b3783",
-                borderRadius: "5px",
-              }}
-            >
-              <button className="quantity-button" onClick={handleDecrement}>
-                <IoRemoveSharp size={15} />
-              </button>
-              <Form.Control
-                type="text"
-                value={quantity}
-                readOnly
-                className="text-center mx-2 border-0"
-                style={{ width: "60px" }}
-              />
-              <button className="quantity-button" onClick={handleIncrement}>
-                <IoAddSharp size={15} />
-              </button>
-            </div>
-          )}
+          </div>
         </Form.Group>
       </Card.Body>
     </Card>

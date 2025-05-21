@@ -88,7 +88,7 @@ const ProductGrid = () => {
                 title={product.title}
                 price={product.price}
                 description={product.description}
-                handleBuyNow={(quantity) =>
+                handleBuyNow={(quantity: any) =>
                   handleBuyNow(product.title, quantity)
                 } // Pass product title and quantity
               />
