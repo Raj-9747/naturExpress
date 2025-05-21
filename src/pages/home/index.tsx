@@ -10,26 +10,29 @@ const products = [
     image: "/assets/headphone.jpeg",
     title: "Wireless Headphones",
     price: "2999",
-    description:
-      "Noise-cancelling over-ear headphones with 40-hour battery life.",
+    description: "Noise-cancelling over-ear headphones with 40-hour battery life.",
+    salesPrice: "2499",
   },
   {
     image: "/assets/headphone.jpeg",
     title: "Smartwatch Pro",
     price: "4999",
     description: "Track your fitness, heart rate, and notifications in style.",
+    salesPrice: "2499",
   },
   {
     image: "/assets/headphone.jpeg",
     title: "Mechanical Keyboard",
     price: "1999",
     description: "Tactile feedback, RGB lighting, and a sleek minimalist look.",
+    salesPrice: "2499",
   },
   {
     image: "/assets/headphone.jpeg",
     title: "Bluetooth Speaker",
     price: "1499",
     description: "Portable speaker with deep bass and 10-hour playtime.",
+    salesPrice: "2499",
   },
 ];
 
@@ -75,17 +78,19 @@ const ProductGrid = () => {
   return (
     <>
       {/* <NavbarComponent /> */}
-      <Container className="mt-4 pt-5 d-flex flex-column align-items-center">
-        <div className="mb-3">
+      <Container className="mt-4 pt-5 d-flex flex-column align-items-center"
+      style={{ maxWidth: "80%" }}>
+        <div className="mb-5">
           <ProductCarousel images={sampleImages} />
         </div>
-        <Row className="g-4">
+        <Row className="g-3">
           {products.map((product, index) => (
-            <Col key={index} xs={12} sm={6} md={4} lg={3}>
+            <Col key={index} xs={12} sm={6} md={4} lg={4}>
               <CardComponent
                 image={product.image}
                 title={product.title}
                 price={product.price}
+                salesPrice={product.salesPrice}
                 description={product.description}
                 handleBuyNow={(quantity: any) =>
                   handleBuyNow(product.title, quantity)

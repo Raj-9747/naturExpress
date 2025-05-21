@@ -7,7 +7,8 @@ export type Props = {
   title: string;
   price: string;
   description: string;
-  handleBuyNow: Function;
+  salesPrice: string;
+  handleBuyNow: (quantity: number) => void;
 };
 
 const CardComponent = ({
@@ -15,10 +16,11 @@ const CardComponent = ({
   title,
   price,
   description,
+  salesPrice,
   handleBuyNow,
 }: Props) => {
   const [quantity, setQuantity] = useState(1);
-  const [showQuantityControls, setShowQuantityControls] = useState(false);
+  // const [showQuantityControls, setShowQuantityControls] = useState(false);
 
   const handleIncrement = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
@@ -28,9 +30,9 @@ const CardComponent = ({
     setQuantity((prevQuantity) => Math.max(1, prevQuantity - 1));
   };
 
-  const handleBuyNowClick = () => {
-    setShowQuantityControls(true);
-  };
+  // const handleBuyNowClick = () => {
+  //   setShowQuantityControls(true);
+  // };
 
   return (
     <Card style={{ width: "18rem" }} className="shadow-sm rounded-4">
@@ -45,7 +47,30 @@ const CardComponent = ({
           {description}
         </Card.Text>
         {/* <label htmlFor=""></label> */}
-        <h5 style={{ color: "#2b3783" }}>₹{price}</h5>
+        {/* <h5 style={{ color: "#2b3783" }}>₹{price}</h5> */}
+        <div>
+          <h6
+            className="text-muted"
+            style={{
+              textDecoration: "line-through",
+              fontSize: "0.9rem",
+              color: "#ff6f61", // Highlight MRP with a distinct color
+            }}
+            title="Original Price" // Tooltip for better user experience
+          >
+            MRP: ₹{price}
+          </h6>
+          <h5
+            style={{
+              color: "#2b3783",
+              margin: 0,
+              fontWeight: "bold", // Make the sales price more prominent
+            }}
+            title="Discounted Price" // Tooltip for better user experience
+          >
+            Sales Price: ₹{salesPrice}
+          </h5>
+        </div>
 
         <Form.Group className="mt-2">
           <div
@@ -74,7 +99,7 @@ const CardComponent = ({
           <div className="mt-2">
             <button
               className="w-100 general-button"
-              onClick={() => handleBuyNow()}
+              onClick={() => handleBuyNow(quantity)}
             >
               Buy Now
             </button>
