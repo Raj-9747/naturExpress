@@ -5,9 +5,9 @@ const NavbarComponent = () => {
   const NavbarJSON = {
     title: "NaturExpress",
     links: [
-      { name: "Home", href: "/", imageUrl: "" }, // Added Home
-      { name: "Contact Us", href: "/contact", imageUrl: "" }, // Added Contact Us
-      { name: "About Us", href: "/about", imageUrl: "" }, // Added About Us
+      { name: "Home", href: "/", imageUrl: "" },
+      { name: "Contact Us", href: "/contact", imageUrl: "" },
+      { name: "About Us", href: "/about", imageUrl: "" },
     ],
   };
 
@@ -17,7 +17,7 @@ const NavbarComponent = () => {
   };
 
   return (
-    <Navbar expand="lg" className="navbar py-2 bg-dark text-white" fixed="top">
+    <Navbar expand="lg" className="navbar py-2 text-white" fixed="top">
       <Container fluid className="navbar-cotnainer">
         <div className="d-flex align-items-center">
           <Navbar.Brand href="/" className="text-black ps-5">
@@ -26,8 +26,20 @@ const NavbarComponent = () => {
         </div>
         <Nav className="mx-auto">
           {NavbarJSON.links.map((link, index) => (
-            <Nav.Link key={index} href={link.href} className="text-white d-flex align-items-center mx-2">
-              {link.imageUrl && <Image width={15} height={15} src={link.imageUrl} alt="icon" className="me-1" />}
+            <Nav.Link
+              key={index}
+              href={link.href}
+              className="text-white d-flex align-items-center mx-2"
+            >
+              {link.imageUrl && (
+                <Image
+                  width={15}
+                  height={15}
+                  src={link.imageUrl}
+                  alt="icon"
+                  className="me-1"
+                />
+              )}
               {link.name}
             </Nav.Link>
           ))}

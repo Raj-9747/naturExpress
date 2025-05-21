@@ -11,44 +11,56 @@ export type Props = {
     age: string;
     address: string;
   };
-  handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  handleChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
   selectedProduct: {
     title: string;
     quantity: number;
-  }; 
+  };
 };
 
-const CustomerDetailModal = ({ show, handleClose, formData, handleChange, selectedProduct }: Props) => {
-    const handleSubmit = (e: React.FormEvent) => {
-      e.preventDefault();
-  
-      const templateParams = {
-        name: formData.name,
-        age: formData.age,
-        mobile_number: formData.phone,
-        address: formData.address,
-        quantity: selectedProduct.quantity,
-        product_name: selectedProduct.title,
-      };
-  
-      emailjs
-        .send(
-          "service_ce02ok1", // Replace with your EmailJS service ID
-          "template_nkv608y", // Replace with your EmailJS template ID
-          templateParams,
-          "rw06AFAFLP8ij1d99" // Replace with your EmailJS user ID (or public key)
-        )
-        .then(
-          (response) => {
-            console.log("Email sent successfully!", response.status, response.text);
-            handleClose();
-            window.location.href = "/"; 
-          },
-          (error) => {
-            console.error("Failed to send email:", error);
-          }
-        );
+const CustomerDetailModal = ({
+  show,
+  handleClose,
+  formData,
+  handleChange,
+  selectedProduct,
+}: Props) => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const templateParams = {
+      name: formData.name,
+      age: formData.age,
+      mobile_number: formData.phone,
+      address: formData.address,
+      quantity: selectedProduct.quantity,
+      product_name: selectedProduct.title,
     };
+
+    emailjs
+      .send(
+        "service_ce02ok1", // Replace with your EmailJS service ID
+        "template_nkv608y", // Replace with your EmailJS template ID
+        templateParams,
+        "rw06AFAFLP8ij1d99" // Replace with your EmailJS user ID (or public key)
+      )
+      .then(
+        (response) => {
+          console.log(
+            "Email sent successfully!",
+            response.status,
+            response.text
+          );
+          handleClose();
+          window.location.href = "/";
+        },
+        (error) => {
+          console.error("Failed to send email:", error);
+        }
+      );
+  };
   return (
     <Modal show={show} onHide={handleClose} centered>
       <Modal.Header closeButton>
@@ -109,9 +121,9 @@ const CustomerDetailModal = ({ show, handleClose, formData, handleChange, select
             />
           </Form.Group>
 
-          <Button variant="success" type="submit" className="w-100">
+          <button type="submit" className="w-100 general-button">
             Submit
-          </Button>
+          </button>
         </Form>
       </Modal.Body>
     </Modal>
