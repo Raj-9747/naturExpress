@@ -187,7 +187,7 @@ const LoginForm = () => {
                 href="#"
                 className="text-decoration-none p-2"
                 style={{
-                  color: "#5565A6",
+                  color: "#2b3783",
                 }}
               >
                 Forgot your password?
