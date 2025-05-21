@@ -34,10 +34,9 @@ const products = [
 ];
 
 const sampleImages = [
-  "https://picsum.photos/id/237/400/300", // Dog
-  "https://picsum.photos/id/1025/400/300", // Another dog
-  "https://picsum.photos/id/1003/400/300", // Mountain
-  "https://picsum.photos/id/1015/400/300", // River
+  "/assets/B1.png",
+  "/assets/B2.png", 
+  "/assets/B3.png", 
 ];
 
 const ProductGrid = () => {
